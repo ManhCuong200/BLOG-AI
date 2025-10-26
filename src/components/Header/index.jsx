@@ -1,23 +1,12 @@
 import React from "react";
-
-const Navbar = ({ toggleDarkMode }) => {
-  const getCurrentPage = () => {
-    return window.location.hash.slice(1) || "main";
-  };
-
-  const navigateToPage = (page) => {
-    window.location.hash = page;
-    window.location.reload();
-  };
-
+import { Link } from "react-router-dom";
+const Navbar = ({ toggleDarkMode, isDarkMode }) => {
   return (
     <>
+      <div className="fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
       <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <button
-            className="flex items-center space-x-2 hover:text-primary"
-            onClick={() => navigateToPage("main")}
-          >
+          <button className="flex items-center space-x-2 hover:text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -36,26 +25,19 @@ const Navbar = ({ toggleDarkMode }) => {
               <circle cx="11" cy="11" r="2"></circle>
             </svg>
             <span className="text-2xl font-bold text-primary opacity-0 sm:opacity-100 cursor-pointer">
-              AI Blog Generator
+              <Link to="/">AI Blog Generator</Link>
             </span>
           </button>
           <div className="flex items-center gap-2">
             <button
-              className={`inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary underline-offset-4 hover:underline h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5 cursor-pointer ${
-                getCurrentPage() === "editor" ? "underline" : ""
-              }`}
-              onClick={() => navigateToPage("editor")}
+              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary underline-offset-4 hover:underline h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5 cursor-pointer ${
+               "
             >
-              Editor
+              <Link to="/editor">Editor</Link>
             </button>
 
-            <button
-              className={`inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary underline-offset-4 hover:underline h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5 cursor-pointer ${
-                getCurrentPage() === "history" ? "underline" : ""
-              }`}
-              onClick={() => navigateToPage("history")}
-            >
-              History
+            <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary underline-offset-4 hover:underline h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5 cursor-pointer ">
+              <Link to="/history">History</Link>
             </button>
             <button
               onClick={() => toggleDarkMode()}
