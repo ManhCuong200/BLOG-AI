@@ -1,24 +1,22 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const Layout = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
-  const toggleDarkMode = () => {
-    setTheme(isDarkMode ? "light" : "dark");
-    setIsDarkMode(!isDarkMode);
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
   };
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Header toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-      <Outlet />
+    <div className={theme === "dark" ? "dark" : ""}>
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Header isDarkMode={theme === "dark"} toggleDarkMode={toggleTheme} />
+        <Outlet />
+      </div>
     </div>
   );
 };

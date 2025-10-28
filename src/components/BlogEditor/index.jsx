@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 const BlogEditor = ({
   inputValue,
@@ -32,7 +31,7 @@ const BlogEditor = ({
                 {isLoading ? "Tạo nội dung" : "Tạo bài blog"}
               </button>
             </div>
-            <label className="mt-4 text-sm text-muted-foreground" for="">
+            <label className="mt-4 text-sm text-muted-foreground">
               AI sẽ tạo ra nội dung blog dựa trên chủ đề bạn nhập
             </label>
           </div>
