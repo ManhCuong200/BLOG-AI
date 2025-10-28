@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Navbar = ({ toggleDarkMode, isDarkMode }) => {
+const Navbar = ({ toggleDarkMode }) => {
   return (
     <>
       <div className="fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>

@@ -21,6 +21,7 @@ const History = () => {
     localStorage.setItem("history", JSON.stringify(updateHistoryList));
     setHistoryList(updateHistoryList);
   };
+
   const handleView = (id) => {
     const blog = historyList.find((item) => item.id === id);
     if (blog) {
@@ -34,6 +35,7 @@ const History = () => {
     setCopying(true);
     setTimeout(() => setDownloading(false), 700);
   };
+
   const handleDowloand = () => {
     const blob = new Blob([selectedBlog.content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
