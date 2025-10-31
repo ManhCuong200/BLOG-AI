@@ -59,21 +59,25 @@ const Editor = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-12">
-        <BlogEditor
-          inputValue={inputValue}
-          handleCreateBlog={handleCreateBlog}
-          setInputValue={setInputValue}
-          isLoading={isLoading}
-        />
-      </div>
-      <div className=" w-full text-card-foreground gap-6 justify-between rounded-xl  bg-card border shadow-sm p-6">
-        <PreviewContent
-          contentBlog={contentBlog}
-          handleCopy={handleCopy}
-          handleDownload={handleDownload}
-          copying={copying}
-          downloading={downloading}
-        />
+        <div className="grid gap-6">
+          <div className="grid gap-6">
+          <BlogEditor
+            inputValue={inputValue}
+            handleCreateBlog={handleCreateBlog}
+            setInputValue={setInputValue}
+            isLoading={isLoading}
+          />
+        </div>
+        <div className=" w-full text-card-foreground gap-6 justify-between rounded-xl  bg-card border shadow-sm p-6">
+          <PreviewContent
+            contentBlog={contentBlog}
+            handleCopy={handleCopy}
+            handleDownload={handleDownload}
+            copying={copying}
+            downloading={downloading}
+          />
+          </div>
+        </div>
       </div>
     </>
   );
