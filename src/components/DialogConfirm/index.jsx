@@ -5,29 +5,7 @@ import {
 } from "@/components/ui/dialog"
 import { Copy, Download } from "lucide-react"
 
-export function DialogConfirm({ openConfirm, openChange, selectedItem }) {
-  const [copying, setCopying] = useState(false);
-
-  const handleCopy = () => {
-    if (!selectedItem?.content) return;
-    setCopying(true);
-    navigator.clipboard.writeText(selectedItem.content);
-    setTimeout(() => setCopying(false), 700);
-  };
-
-  const handleDownload = () => {
-    if (!selectedItem?.content) return;
-    const blob = new Blob([selectedItem.content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${selectedItem?.title || 'blog'}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
-
+export function DialogConfirm({ openConfirm, openChange, selectedItem, handleCopy, handleDownload, copying }) {
   return (
     <Dialog open={openConfirm} onOpenChange={openChange}>
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto" showCloseButton={false}>
