@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Editor from "./pages/Editor";
 import History from "./pages/History";
 import Layout from "./components/Layout";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/history" element={<History />} />
         </Route>
       </Routes>
+      <Toaster position="top-right" />
     </BrowserRouter>
   );
 }

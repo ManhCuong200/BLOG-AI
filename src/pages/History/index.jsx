@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import HistoryList from "@/components/HistoryList";
 import { DialogDelete } from "@/components/DialogDelete";
 import { DialogConfirm } from "@/components/DialogConfirm";
+import { toast } from "react-hot-toast";
 
 const History = () => {
   const [historyList, setHistoryList] = useState([]);
@@ -42,6 +43,7 @@ const History = () => {
     setCopying(true);
     navigator.clipboard.writeText(selectedItem.content);
     setTimeout(() => setCopying(false), 700);
+    toast.success("Nội dung đã được sao chép!");
   };
 
   const handleDownload = () => {
@@ -57,6 +59,7 @@ const History = () => {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    toast.success("Nội dung đã được tải xuống!");
   };
   return (
     <>

@@ -40,20 +40,24 @@ const Editor = () => {
     setCopying(true);
     navigator.clipboard.writeText(contentBlog);
     setTimeout(() => setCopying(false), 700);
+    toast.success("Nội dung đã được sao chép!");
   };
 
   const handleDownload = () => {
     if (!contentBlog) return;
     setDownloading(true);
+    //convert filename to valid filename
+    const filename = inputValue.replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-");
 
     const blob = new Blob([contentBlog], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${inputValue || "blog"}.txt`;
+    a.download = filename
     a.click();
     URL.revokeObjectURL(url);
     setTimeout(() => setDownloading(false), 700);
+    toast.success("Nội dung đã được tải xuống!");
   };
 
   return (
