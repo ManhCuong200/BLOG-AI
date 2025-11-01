@@ -11,11 +11,32 @@ const Editor = () => {
   const [downloading, setDownloading] = useState(false);
 
   const handleCreateBlog = async (inputValue) => {
+
     try {
       setIsLoading(true);
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_AI_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-      const prompt = "Tạo một bài blog về: " + inputValue;
+      const prompt = `
+      Bạn hãy viết một bài blog thật hay với ngôn ngữ tự nhiên, gần gũi, hấp dẫn và truyền cảm hứng.
+Chủ đề bài viết: ${inputValue}
+
+Yêu cầu:
+
+Viết bằng tiếng Việt, giọng văn cuốn hút, dễ hiểu, phù hợp cho cả người mới bắt đầu.
+
+Mở bài thu hút, giới thiệu vấn đề và tạo sự tò mò cho người đọc.
+
+Cung cấp kiến thức từ cơ bản đến nâng cao.
+
+Có các tiêu đề rõ ràng theo cấu trúc Markdown như: ##, ###, **bold**, bullet point, ví dụ minh hoạ, code (nếu phù hợp).
+
+Có phần giải thích tại sao chủ đề này quan trọng, lợi ích, và ứng dụng thực tế.
+
+Nếu là chủ đề công nghệ, hãy giải thích bằng ví dụ + đoạn code minh họa (nếu có).
+
+Cuối bài phải có phần kết luận truyền cảm hứng + lời khuyên hành động, khuyến khích người đọc bắt đầu ngay.
+      `
+    
       const result = await model.generateContent(prompt);
       const response = result.response.candidates[0].content.parts[0].text;
       setContentBlog(response);

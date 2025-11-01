@@ -5,7 +5,7 @@ import notFound from "../../assets/giff/notFound.json";
 
 const HistoryList = ({ historyList, openDeleteDialog, openViewDialog }) => {
   return (
-    <div className="flex flex-col ">
+    <div className=" ">
       <h1 className="text-3xl font-bold mb-6">Hi, here is your history</h1>
       {!historyList || historyList.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[60vh]">
@@ -23,7 +23,7 @@ const HistoryList = ({ historyList, openDeleteDialog, openViewDialog }) => {
           {historyList.map((item) => (
             <div
               key={item.id}
-              className="bg-card flex-1 min-w-[600px] rounded-xl border p-6 shadow-sm"
+              className="bg-card flex-1 rounded-xl border p-6 shadow-sm"
             >
               <h2 className="text-2xl font-bold mb-3 break-words">
                 {item.title}
